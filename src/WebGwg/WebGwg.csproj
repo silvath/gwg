@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Drapo" Version="2018.8.29.6" />
-    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="2.5.0" />
   </ItemGroup>
@@ -32,11 +32,7 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\img\" />
-  </ItemGroup>
-
+  
   <ItemGroup>
     <ProjectReference Include="..\gwg\gwg.csproj" />
   </ItemGroup>
