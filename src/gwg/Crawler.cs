@@ -13,10 +13,10 @@ namespace gwg
 {
     public class Crawler
     {
-        private readonly IHttpClientFactory _httpClientFactory;
-        public Crawler(IHttpClientFactory httpClientFactory)
+        private readonly HttpClient _httpClient;
+        public Crawler()
         {
-            _httpClientFactory = httpClientFactory;
+            _httpClient = new HttpClient();
         }
         private string GetSiteLink()
         {
@@ -34,7 +34,7 @@ namespace gwg
         {
             this.Log("GWG");
             //Content
-            string content = await GetContent(true);
+            string content = await GetContent();
             if (content == null)
             {
                 this.Log("No content");
@@ -48,23 +48,16 @@ namespace gwg
             return (gamesInfo);
         }
 
-        private async Task<string> GetContent(bool cache)
+        private async Task<string> GetContent()
         {
             string content = string.Empty;
             string path = Directory.GetCurrentDirectory();
-            string cachePath = Path.Combine(path, "content.txt");
-            if ((cache) && (File.Exists(cachePath)))
-                return(await File.ReadAllTextAsync(cachePath));
             string uri = GetSiteLink();
-            HttpClient httpClient = _httpClientFactory.CreateClient();
+            HttpClient httpClient = this._httpClient;
             HttpResponseMessage response = await httpClient.GetAsync(uri);
             if (!response.IsSuccessStatusCode)
                 return (null);
             content = await response.Content.ReadAsStringAsync();
-            if (File.Exists(cachePath))
-                File.Delete(cachePath);
-            if (cache)
-                File.WriteAllText(cachePath, content);
             return (content);
         }
 
@@ -73,7 +66,7 @@ namespace gwg
             List<GameInfo> gamesInfo = new List<GameInfo>();
             int index = content.IndexOf("globalContentNew");
             string contentGraph = content.Substring(index + 19);
-            JObject graph = JsonConvert.DeserializeObject<dynamic>(contentGraph);
+            JObject graph = JsonConvert.DeserializeObject<JObject>(contentGraph);
             foreach (JToken graphLocate in graph.Children())
             {
                 foreach (JToken graphCultures in graphLocate.Children())

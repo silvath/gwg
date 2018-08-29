@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="/drapo.js"></script>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <title>GWG</title>
+</head>
+<body>
+    <!--Data-->
+    <div d-dataKey="errors" d-dataType="array"></div>
+    <div d-dataKey="systemClipboard" d-dataType="value"></div>
+    <div d-dataKey="games" d-dataUrlGet="/api/Crawler/GetGames"></div>
+    <!--Windows-->
+    <div class="container-fluid">
+        <div class="row">
+            <!--Content-->
+            <div d-sector="content" class="col-sm-12">
+                <div d-for="game in games">
+                    <span d-model="{{game.Name}}" d-on-click="RedirectPage({{game.Link}})"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Startup-->
+    <script src="/js/bootstrap.min.js"></script>
+</body>
+</html>
