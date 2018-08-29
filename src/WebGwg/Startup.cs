@@ -54,6 +54,7 @@ namespace WebGwg
                     headers.CacheControl = new CacheControlHeaderValue() { NoCache = true };
                 }
             });
+            app.UseAuthentication();
             app.UseMvcWithDefaultRoute();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
