@@ -22,6 +22,9 @@
     <Content Update="Views\**\*;">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+    <Content Update="tsconfig.json;">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Update="web.config;">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
