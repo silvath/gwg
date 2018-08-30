@@ -25,7 +25,6 @@ namespace WebGwg
                       options.SerializerSettings.ContractResolver = new DefaultContractResolver();
                   });
             services.AddSingleton<Crawler, Crawler>();
-            services.AddHttpClient();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info
