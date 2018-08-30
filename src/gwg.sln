@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gwg", "gwg\gwg.csproj", "{6CBF79C9-0F86-4242-A0DC-F8892812A38D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebGwg", "WebGwg\WebGwg.csproj", "{9844A0BF-9E77-4934-AFA5-E539DED933EF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gwg", "gwg\gwg.csproj", "{6CBF79C9-0F86-4242-A0DC-F8892812A38D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
