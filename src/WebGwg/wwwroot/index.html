@@ -3,6 +3,7 @@
 <head>
     <script src="/drapo.js"></script>
     <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/layout.css" rel="stylesheet" />
     <meta charset="utf-8" />
     <title>GWG</title>
 </head>
@@ -13,11 +14,14 @@
     <div d-dataKey="games" d-dataUrlGet="/api/Crawler/GetGames"></div>
     <!--Windows-->
     <div class="container-fluid">
-        <div class="row">
-            <!--Content-->
-            <div d-sector="content" class="col-sm-12">
-                <div d-for="game in games">
-                    <span d-model="{{game.Name}}" d-on-click="RedirectPage({{game.Link}})"></span>
+        <!--Content-->
+        <div d-sector="content">
+            <div d-for="game in games" class="row Game">
+                <div class="col-sm-1">
+                    <img class="GameImage" d-attr-src="{{game.Image}}" d-attr-alt="{{game.Name}}">
+                </div>
+                <div class="col-sm-11 GameNameContainer">
+                    <span class="GameName" d-model="{{game.Name}}" d-on-click="RedirectPage({{game.Link}})"></span>
                 </div>
             </div>
         </div>

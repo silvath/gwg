@@ -9,5 +9,6 @@ namespace gwg
         public string Name { set; get; }
         public string Link { set; get; }
         public string Culture { set; get; }
+        public string Image { set; get; }
     }
 }

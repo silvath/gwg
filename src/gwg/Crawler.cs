@@ -76,6 +76,7 @@ namespace gwg
                         string culture = ((JProperty)graphCulture).Name;
                         List<string> cultureNames = new List<string>();
                         List<string> cultureLinks = new List<string>();
+                        List<string> cultureImages = new List<string>();
                         foreach (JToken graphRow in graphCulture.Children())
                         {
                             foreach (JToken graphEntry in graphRow.Children())
@@ -86,6 +87,8 @@ namespace gwg
                                     cultureNames.Add(value);
                                 if (name.StartsWith("keyLinknowgame"))
                                     cultureLinks.Add(value);
+                                if (name.StartsWith("keyImagenowgame"))
+                                    cultureImages.Add(value);
                             }
                         }
                         for (int i = 0; i < cultureNames.Count;i++)
@@ -94,6 +97,7 @@ namespace gwg
                             gameInfo.Culture = culture;
                             gameInfo.Name = cultureNames[i];
                             gameInfo.Link = cultureLinks[i];
+                            gameInfo.Image = cultureImages[i];
                             if (string.IsNullOrEmpty(gameInfo.Link))
                                 continue;
                             Join(gamesInfo, gameInfo);
