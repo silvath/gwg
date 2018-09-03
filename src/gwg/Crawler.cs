@@ -66,6 +66,10 @@ namespace gwg
             List<GameInfo> gamesInfo = new List<GameInfo>();
             int index = content.IndexOf("globalContentNew");
             string contentGraph = content.Substring(index + 19);
+            int indexOld = contentGraph.IndexOf("globalContentOld");
+            if (indexOld > 0)
+                contentGraph = contentGraph.Substring(0, indexOld - 1);
+            contentGraph = contentGraph.Trim();
             JObject graph = JsonConvert.DeserializeObject<JObject>(contentGraph);
             foreach (JToken graphLocate in graph.Children())
             {
