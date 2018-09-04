@@ -81,6 +81,8 @@ namespace gwg
                         List<string> cultureNames = new List<string>();
                         List<string> cultureLinks = new List<string>();
                         List<string> cultureImages = new List<string>();
+                        List<string> cultureInclude = new List<string>();
+                        List<string> cultureExclude = new List<string>();
                         foreach (JToken graphRow in graphCulture.Children())
                         {
                             foreach (JToken graphEntry in graphRow.Children())
@@ -93,14 +95,22 @@ namespace gwg
                                     cultureLinks.Add(value);
                                 if (name.StartsWith("keyImagenowgame"))
                                     cultureImages.Add(value);
+                                if (name.StartsWith("keyIncludenow"))
+                                    cultureInclude.Add(value);
+                                if (name.StartsWith("keyExcludenow"))
+                                    cultureExclude.Add(value);
                             }
                         }
                         for (int i = 0; i < cultureNames.Count;i++)
                         {
+                            string include = cultureInclude[i];
+                            string exclude = cultureExclude[i];
+                            if (!IsCultureAllowed(culture, include, exclude))
+                                continue;
                             GameInfo gameInfo = new GameInfo();
                             gameInfo.Culture = culture;
                             gameInfo.Name = cultureNames[i];
-                            gameInfo.Link = cultureLinks[i];
+                            gameInfo.Link = GetLink(culture, cultureLinks[i]);
                             gameInfo.Image = cultureImages[i];
                             if (string.IsNullOrEmpty(gameInfo.Link))
                                 continue;
@@ -110,6 +120,25 @@ namespace gwg
                 }
             }
             return (gamesInfo);
+        }
+
+        private bool IsCultureAllowed(string culture, string include, string exclude)
+        {
+            bool includeEmpty = string.IsNullOrEmpty(include);
+            if ((includeEmpty) && (string.IsNullOrEmpty(exclude)))
+                return (true);
+            if (exclude.Contains(culture))
+                return (false);
+            return ((includeEmpty) || (include.Contains(culture)));
+        }
+
+        private string GetLink(string culture, string link)
+        {
+            if (string.IsNullOrEmpty(link))
+                return (link);
+            if (link.Contains("store"))
+                link = link.Replace("store", culture);
+            return (link);
         }
 
         private void Join(List<GameInfo> gamesInfo, GameInfo gameInfoCulture)
