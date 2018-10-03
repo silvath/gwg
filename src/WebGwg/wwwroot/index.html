@@ -21,7 +21,7 @@
                     <img class="GameImage" d-attr-src="{{game.Image}}" d-attr-alt="{{game.Name}}">
                 </div>
                 <div class="col-sm-10 GameNameContainer">
-                    <span class="GameName" d-model="{{game.Name}}" d-on-click="RedirectPage({{game.Link}})"></span>
+                    <span class="GameName" d-model="{{game.Name}}" d-attr-title="{{game.Culture}}" d-on-click="RedirectPage({{game.Link}})"></span>
                 </div>
             </div>
         </div>
